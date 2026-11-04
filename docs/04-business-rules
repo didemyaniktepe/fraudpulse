@@ -1,0 +1,27 @@
+## 6. Business rules — initial proposal
+
+The following values are **demonstration defaults**, not evidence-based bank policies. The implementation must document their version; values may change through a reviewed requirements update.
+
+| Rule ID | Name | MVP rule definition | Example contribution |
+|---|---|---|---:|
+| **R-01** | High amount | Transaction amount **> €5,000**. | +20 |
+| **R-02** | High velocity | The customer's **5th or later transaction within an inclusive 5-minute event-time window**, including the current transaction. | +30 |
+| **R-03** | Implausible travel | Consecutive known customer locations are **>1,000 km apart** with transaction event times **≤10 minutes apart**, for positive time differences. | +40 |
+| **R-04** | Repeated equal amount | The customer's **8th or later transaction of the same exact EUR amount within an inclusive 2-minute event-time window**, including the current transaction. | +15 |
+
+### 6.1 Scoring and classification
+
+- Score = `min(100, sum(contributions from all triggered rules))`.
+- **LOW:** 0–39, **MEDIUM:** 40–69, **HIGH:** 70–100.
+- Save each triggered rule's ID, contribution, and explanation alongside the score.
+- A HIGH result generates an alert; LOW and MEDIUM results do not.
+- No rule matched means score = 0 (LOW), **not** proof that a transaction is safe.
+
+### 6.2 Temporal and location rules
+
+- Time windows use **event time** (`occurredAt`), not consumer processing time.
+- Evaluate activity for the **same `customerId`** only.
+- For MVP, a deterministic simulator should emit events in chronological order **per customer**. Preserving per-customer ordering should be part of the architecture design.
+- The initial MVP may exclude out-of-order or excessively late events from velocity/travel calculations, but **must record that decision and its effect**. Proper event-time reordering/late-arrival handling is a follow-up design item.
+- Distance calculations use geographical coordinates; **country code alone is insufficient** to infer implausible travel.
+- A rule should not trigger when required comparison data is missing. Missing or invalid **required input** must be rejected at ingestion rather than silently interpreted as low risk.
