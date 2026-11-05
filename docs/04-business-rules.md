@@ -1,4 +1,4 @@
-## 6. Business rules — initial proposal
+## 1. Business rules — initial proposal
 
 The following values are **demonstration defaults**, not evidence-based bank policies. The implementation must document their version; values may change through a reviewed requirements update.
 
@@ -9,7 +9,7 @@ The following values are **demonstration defaults**, not evidence-based bank pol
 | **R-03** | Implausible travel | Consecutive known customer locations are **>1,000 km apart** with transaction event times **≤10 minutes apart**, for positive time differences. | +40 |
 | **R-04** | Repeated equal amount | The customer's **8th or later transaction of the same exact EUR amount within an inclusive 2-minute event-time window**, including the current transaction. | +15 |
 
-### 6.1 Scoring and classification
+### 1.1 Scoring and classification
 
 - Score = `min(100, sum(contributions from all triggered rules))`.
 - **LOW:** 0–39, **MEDIUM:** 40–69, **HIGH:** 70–100.
@@ -17,7 +17,7 @@ The following values are **demonstration defaults**, not evidence-based bank pol
 - A HIGH result generates an alert; LOW and MEDIUM results do not.
 - No rule matched means score = 0 (LOW), **not** proof that a transaction is safe.
 
-### 6.2 Temporal and location rules
+### 1.2 Temporal and location rules
 
 - Time windows use **event time** (`occurredAt`), not consumer processing time.
 - Evaluate activity for the **same `customerId`** only.
