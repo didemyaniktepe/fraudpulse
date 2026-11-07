@@ -1,4 +1,4 @@
-package com.fraudpulse.transaction_service;
+package com.fraudpulse.transaction;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
