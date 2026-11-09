@@ -9,14 +9,13 @@ import jakarta.validation.constraints.PastOrPresent;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 public record CreateTransactionRequest(
 
-        @NotNull
-        UUID accountId,
+        @NotBlank 
+        String accountExternalRef,
 
-        UUID deviceId,
+        String deviceRef,
 
         @NotNull
         TransactionType transactionType,

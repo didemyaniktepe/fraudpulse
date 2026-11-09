@@ -24,9 +24,11 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String name;
-    private String description;
+    private String deviceRef;
     @CreatedDate
-    private Instant createdAt;
-    
+    private Instant firstSeenAt;
+
+    public Device(String deviceRef) {
+        this.deviceRef = deviceRef;
+    }
 }

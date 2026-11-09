@@ -10,14 +10,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
+import com.fraudpulse.transaction.ingestion.application.TransactionService;
+import com.fraudpulse.transaction.ingestion.mapper.TransactionResponseMapper;
+import com.fraudpulse.transaction.ingestion.persistance.Transaction;
 
 @RestController
 @RequiredArgsConstructor
 public class TransactionController {
-    
+
+    private final TransactionService transactionService;
+    private final TransactionResponseMapper transactionResponseMapper;
+
     @PostMapping("/transactions")
     public ResponseEntity<TransactionResponse> create(@Valid @RequestBody CreateTransactionRequest request) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Transaction transaction = transactionService.create(request);
+        return ResponseEntity.ok(transactionResponseMapper.toResponse(transaction));
     }
-    
+
 }
