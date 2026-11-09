@@ -15,7 +15,6 @@ public interface TransactionEntityMapper {
 
     @Mapping(target = "account", source = "account")
     @Mapping(target = "device", source = "device")
-    @Mapping(target = "createdAt", ignore = true)
     Transaction toEntity(CreateTransactionRequest createTransactionRequest, Account account, Device device);
 
 }
