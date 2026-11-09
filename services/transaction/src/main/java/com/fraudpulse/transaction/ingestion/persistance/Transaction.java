@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
+import lombok.Builder;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -51,4 +52,17 @@ public class Transaction {
     private Instant occurredAt;
     @CreatedDate
     private Instant createdAt;
+
+
+    @Builder
+    public Transaction(Account account, Device device, TransactionType transactionType, 
+                       BigDecimal amount, String currency, String channel, Instant occurredAt) {
+        this.account = account;
+        this.device = device;
+        this.transactionType = transactionType;
+        this.amount = amount;
+        this.currency = currency;
+        this.channel = channel;
+        this.occurredAt = occurredAt;
+    }
 }

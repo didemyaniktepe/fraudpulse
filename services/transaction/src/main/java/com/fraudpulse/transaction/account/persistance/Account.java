@@ -30,4 +30,8 @@ public class Account {
 
     @CreatedDate
     private Instant createdAt;
+
+    public Account(String externalRef) {
+        this.externalRef = externalRef;
+    }
 }
