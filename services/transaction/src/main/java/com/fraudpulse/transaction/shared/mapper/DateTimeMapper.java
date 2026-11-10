@@ -1,10 +1,11 @@
 package com.fraudpulse.transaction.shared.mapper;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
-import java.time.OffsetDateTime;
-import java.time.Instant;
-import java.time.ZoneOffset;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public abstract class DateTimeMapper {

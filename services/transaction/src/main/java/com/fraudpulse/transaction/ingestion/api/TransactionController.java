@@ -1,5 +1,7 @@
 package com.fraudpulse.transaction.ingestion.api;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,7 +13,6 @@ import com.fraudpulse.transaction.ingestion.application.TransactionService;
 import com.fraudpulse.transaction.ingestion.mapper.TransactionResponseMapper;
 import com.fraudpulse.transaction.ingestion.persistance.Transaction;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController

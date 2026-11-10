@@ -1,6 +1,5 @@
 package com.fraudpulse.transaction.account.application;
 
-
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;

@@ -3,12 +3,12 @@ package com.fraudpulse.transaction.ingestion.api.dto.request;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-import com.fraudpulse.transaction.domain.model.TransactionType;
-
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+
+import com.fraudpulse.transaction.domain.model.TransactionType;
 
 public record CreateTransactionRequest(
 
