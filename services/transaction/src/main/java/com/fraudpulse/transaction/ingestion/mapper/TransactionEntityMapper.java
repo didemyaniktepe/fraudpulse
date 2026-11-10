@@ -9,7 +9,6 @@ import com.fraudpulse.transaction.account.persistance.Account;
 import com.fraudpulse.transaction.config.MapStructConfig;
 import com.fraudpulse.transaction.device.persistance.Device;
 
-
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, config = MapStructConfig.class)
 public interface TransactionEntityMapper {
 
