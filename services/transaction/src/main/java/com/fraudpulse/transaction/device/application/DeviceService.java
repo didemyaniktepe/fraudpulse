@@ -5,11 +5,10 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.RequiredArgsConstructor;
-
 import com.fraudpulse.transaction.device.persistance.Device;
 import com.fraudpulse.transaction.device.persistance.DeviceRepository;
 
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
