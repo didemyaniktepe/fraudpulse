@@ -1,4 +1,4 @@
-package com.fraudpulse.simulator.client.request;
+package com.fraudpulse.simulator.client.payload;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -10,6 +10,8 @@ public record TransactionPayload(
     BigDecimal amount,
     String currency,
     String channel,
-    OffsetDateTime occurredAt
+    OffsetDateTime occurredAt,
+    String source,
+    String sourceTransactionId
 ) {
 }

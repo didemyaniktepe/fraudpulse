@@ -22,9 +22,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-
     private String externalRef;
-
     @CreatedDate
     private Instant createdAt;
 

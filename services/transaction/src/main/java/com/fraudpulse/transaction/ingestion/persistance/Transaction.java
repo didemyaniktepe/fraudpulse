@@ -41,6 +41,10 @@ public class Transaction {
     private BigDecimal amount;
     private String currency;
     private String channel;
+
+    private String source;
+    private String sourceTransactionId;
+
     private Instant occurredAt;
     @CreatedDate
     private Instant createdAt;
@@ -48,7 +52,8 @@ public class Transaction {
 
     @Builder
     public Transaction(Account account, Device device, TransactionType transactionType, 
-                       BigDecimal amount, String currency, String channel, Instant occurredAt) {
+                       BigDecimal amount, String currency, String channel, Instant occurredAt,
+                       String source, String sourceTransactionId) {
         this.account = account;
         this.device = device;
         this.transactionType = transactionType;
@@ -56,5 +61,7 @@ public class Transaction {
         this.currency = currency;
         this.channel = channel;
         this.occurredAt = occurredAt;
+        this.source = source;
+        this.sourceTransactionId = sourceTransactionId;
     }
 }

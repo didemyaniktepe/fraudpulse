@@ -1,11 +1,10 @@
 package com.fraudpulse.simulator.client;
 
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import com.fraudpulse.simulator.client.request.TransactionPayload;
+import com.fraudpulse.simulator.client.payload.TransactionPayload;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,13 +14,12 @@ public class TransactionClient {
 
     private final RestClient restClient;
 
-    public HttpStatusCode send(TransactionPayload payload) {
-        return restClient.post()
+    public void send(TransactionPayload payload) {
+        restClient.post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(payload)
                 .retrieve()
-                .toBodilessEntity()
-                .getStatusCode();
+                .toBodilessEntity();
     }
 
 }

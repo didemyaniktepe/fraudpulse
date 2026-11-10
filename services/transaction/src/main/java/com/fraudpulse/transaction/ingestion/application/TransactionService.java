@@ -25,8 +25,8 @@ public class TransactionService {
 
     @Transactional
     public Transaction create(CreateTransactionRequest request) {
-        Account account = accountService.findByExternalRef(request.accountExternalRef()).orElseGet(() -> accountService.create(request.accountExternalRef()));
-        Device device = deviceService.findByDeviceRef(request.deviceRef()).orElseGet(() -> deviceService.create(request.deviceRef()));
+        Account account = accountService.findByExternalRef(request.accountId()).orElseGet(() -> accountService.create(request.accountId()));
+        Device device = deviceService.findByDeviceRef(request.deviceId()).orElseGet(() -> deviceService.create(request.deviceId()));
         Transaction transaction = entityMapper.toEntity(request, account, device);
         return repository.save(transaction);
     }

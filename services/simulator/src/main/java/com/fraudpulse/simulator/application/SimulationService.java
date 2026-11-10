@@ -3,7 +3,7 @@ package com.fraudpulse.simulator.application;
 import org.springframework.stereotype.Service;
 
 import com.fraudpulse.simulator.client.TransactionClient;
-import com.fraudpulse.simulator.client.request.TransactionPayload;
+import com.fraudpulse.simulator.client.payload.TransactionPayload;
 import com.fraudpulse.simulator.generator.TransactionGenerator;
 
 import lombok.RequiredArgsConstructor;
