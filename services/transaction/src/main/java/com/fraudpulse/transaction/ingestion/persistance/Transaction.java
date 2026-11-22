@@ -2,6 +2,7 @@ package com.fraudpulse.transaction.ingestion.persistance;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.*;
@@ -11,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fraudpulse.transaction.account.persistance.Account;
 import com.fraudpulse.transaction.device.persistance.Device;
+import com.fraudpulse.transaction.domain.model.TransactionStatus;
 import com.fraudpulse.transaction.domain.model.TransactionType;
 
 import lombok.AccessLevel;
@@ -37,6 +39,10 @@ public class Transaction {
     private Device device;
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TransactionStatus status = TransactionStatus.PENDING;
     
     private BigDecimal amount;
     private String currency;
@@ -63,5 +69,9 @@ public class Transaction {
         this.occurredAt = occurredAt;
         this.source = source;
         this.sourceTransactionId = sourceTransactionId;
+    }
+
+    public void updateStatus(TransactionStatus status) {
+        this.status = Objects.requireNonNull(status);
     }
 }

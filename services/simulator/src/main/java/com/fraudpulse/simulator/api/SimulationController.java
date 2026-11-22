@@ -45,8 +45,6 @@ public class SimulationController {
     @Synchronized
     @GetMapping("/status")
     public SimulationStatusResponse status() {
-        return new SimulationStatusResponse(
-                scheduler.isRunning(),
-                settings.getInterval().toSeconds());
+        return new SimulationStatusResponse(scheduler.isRunning(), settings.getInterval().toSeconds());
     }
 }
