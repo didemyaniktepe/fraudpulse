@@ -1,12 +1,14 @@
 package com.fraudpulse.transaction.account.application;
 
-import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fraudpulse.transaction.account.persistance.Account;
 import com.fraudpulse.transaction.account.persistance.AccountRepository;
+import com.fraudpulse.transaction.shared.exception.ApiException;
+import com.fraudpulse.transaction.shared.exception.ErrorCode;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,14 +19,16 @@ public class AccountService {
     private final AccountRepository repository;
 
     @Transactional
-    public Account create(String externalRef) {
-        Account account = new Account(externalRef);
-        return repository.save(account);
+    public Account findOrCreate(String externalRef) {
+        if (externalRef == null) {
+            return null;
+        }
+        return repository.findByExternalRef(externalRef).orElseGet(() -> createIfAbsent(externalRef));
     }
 
-    @Transactional(readOnly = true)
-    public Optional<Account> findByExternalRef(String externalRef) {
-        return repository.findByExternalRef(externalRef);
+    private Account createIfAbsent(String deviceRef) {
+        repository.insertIfAbsent(UUID.randomUUID(), deviceRef);
+        return repository.findByExternalRef(deviceRef).orElseThrow(() -> ApiException.of(ErrorCode.RESOLUTION_FAILED));
     }
 
 }
